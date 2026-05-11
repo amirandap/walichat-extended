@@ -1,75 +1,79 @@
 # WaliChat Extended MCP
 
-Extiende el MCP nativo de WaliChat con las capacidades que le faltan: leer conversaciones, escribir notas privadas, gestionar contactos y cambiar estados de chats.
+Extends the native WaliChat MCP with the capabilities it's missing: reading conversations, writing private notes, managing contacts, and changing chat statuses.
 
-## Herramientas disponibles
+## Available Tools
 
-| Herramienta | Descripción |
+| Tool | Description |
 |---|---|
-| `read_conversation` | Lee el historial completo de mensajes (enviados y recibidos) de un chat |
-| `create_chat_note` | Escribe una nota privada en el perfil de un chat (solo visible en WaliChat) |
-| `get_contact` | Obtiene los detalles de un contacto (nombre, metadata, info de perfil) |
-| `search_contacts` | Busca contactos por nombre o número |
-| `update_contact` | Actualiza el nombre o metadata de un contacto |
-| `update_chat_status` | Cambia el estado del chat: `active`, `resolved`, `pending` |
-| `mark_chat_unread` | Marca un chat como no leído |
-| `update_chat_labels` | Aplica etiquetas a un chat |
-| `get_chat_details` | Obtiene los detalles y estadísticas de un chat |
+| `read_conversation` | Reads the full message history (sent and received) from a chat |
+| `create_chat_note` | Writes a private note on a chat profile (only visible in WaliChat) |
+| `get_contact` | Retrieves contact details (name, metadata, profile info) |
+| `search_contacts` | Searches contacts by name or phone number |
+| `update_contact` | Updates a contact's name or metadata |
+| `update_chat_status` | Changes chat status: `active`, `resolved`, or `pending` |
+| `mark_chat_unread` | Marks a chat as unread |
+| `update_chat_labels` | Applies labels to a chat |
+| `get_chat_details` | Retrieves chat details and statistics |
 
 ## Setup
 
-### Variables de entorno requeridas
+### Required Environment Variables
 
-| Variable | Descripción |
+| Variable | Description |
 |---|---|
-| `WALICHAT_API_KEY` | Tu API key de WaliChat |
-| `WALICHAT_DEVICE_ID` | ID del dispositivo WhatsApp por defecto (24 caracteres hex) |
+| `WALICHAT_API_KEY` | Your WaliChat API key (found at app.wali.chat → Settings → API) |
+| `WALICHAT_DEVICE_ID` | Default WhatsApp device ID (24-char hex, found at app.wali.chat → Devices) |
 
-### Instalación manual (Claude Desktop)
-
-Agrega esto a tu `claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "walichat-extended": {
-      "command": "node",
-      "args": ["/ruta/al/plugin/servers/index.js"],
-      "env": {
-        "WALICHAT_API_KEY": "tu-api-key-aqui",
-        "WALICHAT_DEVICE_ID": "tu-device-id-aqui"
-      }
-    }
-  }
-}
-```
-
-### Instalar dependencias
+### Install Dependencies
 
 ```bash
 cd servers/
 npm install
 ```
 
-## Uso de ejemplo
+### Claude Desktop (manual install)
+
+Add this to your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "walichat-extended": {
+      "command": "node",
+      "args": ["/path/to/walichat-extended/servers/index.js"],
+      "env": {
+        "WALICHAT_API_KEY": "your-api-key-here",
+        "WALICHAT_DEVICE_ID": "your-device-id-here"
+      }
+    }
+  }
+}
+```
+
+## Usage Examples
 
 ```
 read_conversation(chat="584126964574@c.us", limit=20)
-create_chat_note(chat="584126964574", message="Cliente interesado en plan Enterprise")
+create_chat_note(chat="584126964574", message="Client interested in Enterprise plan")
 update_chat_status(chat="584126964574", status="resolved")
-search_contacts(query="Edimar")
+search_contacts(query="John")
 ```
 
-## Endpoints REST utilizados
+## REST Endpoints Used
 
-| Operación | Método | Path |
+| Operation | Method | Path |
 |---|---|---|
-| Leer mensajes | GET | `/v1/chat/{device}/messages?chat={id}` |
-| Crear nota | POST | `/v1/chat/{device}/chats/{id}/notes` |
-| Ver contacto | GET | `/v1/chat/{device}/contacts/{id}` |
-| Buscar contactos | GET | `/v1/chat/{device}/contacts?query=` |
-| Actualizar contacto | PATCH | `/v1/chat/{device}/contacts/{id}` |
-| Ver chat | GET | `/v1/chat/{device}/chats/{id}` |
-| Cambiar estado | PATCH | `/v1/chat/{device}/chats/{id}/status` |
-| Marcar no leído | PATCH | `/v1/chat/{device}/chats/{id}/unread` |
-| Actualizar labels | PATCH | `/v1/chat/{device}/chats/{id}/labels` |
+| Read messages | GET | `/v1/chat/{device}/messages?chat={id}` |
+| Create note | POST | `/v1/chat/{device}/chats/{id}/notes` |
+| Get contact | GET | `/v1/chat/{device}/contacts/{id}` |
+| Search contacts | GET | `/v1/chat/{device}/contacts?query=` |
+| Update contact | PATCH | `/v1/chat/{device}/contacts/{id}` |
+| Get chat | GET | `/v1/chat/{device}/chats/{id}` |
+| Change status | PATCH | `/v1/chat/{device}/chats/{id}/status` |
+| Mark unread | PATCH | `/v1/chat/{device}/chats/{id}/unread` |
+| Update labels | PATCH | `/v1/chat/{device}/chats/{id}/labels` |
+
+## License
+
+MIT
