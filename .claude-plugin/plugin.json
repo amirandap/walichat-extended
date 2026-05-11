@@ -1,0 +1,9 @@
+{
+  "name": "walichat-extended",
+  "version": "1.0.0",
+  "description": "WaliChat extended MCP — lee conversaciones, escribe notas privadas, gestiona contactos y estados de chats via REST API",
+  "author": {
+    "name": "SoftGroup RD"
+  },
+  "keywords": ["whatsapp", "walichat", "crm", "messaging"]
+}

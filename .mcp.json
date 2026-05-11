@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "walichat-extended": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/servers/index.js"],
+      "env": {
+        "WALICHAT_API_KEY": "${WALICHAT_API_KEY}",
+        "WALICHAT_DEVICE_ID": "${WALICHAT_DEVICE_ID}"
+      }
+    }
+  }
+}
