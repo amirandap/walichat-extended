@@ -1,14 +1,16 @@
 {
   "name": "walichat-extended-mcp",
-  "version": "1.0.0",
-  "description": "WaliChat Extended MCP Server",
+  "version": "2.0.0",
+  "description": "WaliChat Extended MCP Server v2 — 22 tools, SQLite intel, HTTP + stdio transport",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "start:http": "MCP_TRANSPORT=http node index.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "better-sqlite3": "^9.4.3",
     "zod": "^3.22.0"
   }
 }
